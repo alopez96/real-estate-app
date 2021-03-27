@@ -32,6 +32,8 @@ function Form() {
     var annualCashflow = getCashflow() * 12;
     var totalInvestment = investments;
     cashOnCashReturn = (annualCashflow / totalInvestment) * 100;
+
+    setCashOnCash(cashOnCashReturn)
   }
 
   return (
@@ -63,6 +65,8 @@ function Form() {
               cta='Calculate'
               action={getCashOnCash}
             />
+
+            <h2>{cashOnCash}</h2>
           </div>
         </main>
       </article>
