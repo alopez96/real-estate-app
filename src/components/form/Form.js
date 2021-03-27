@@ -4,10 +4,15 @@ import NumberInput from './NumberInput';
 
 function Form() {
 
-  const [income, setIncome] = useState(0);
+  const [income, setIncome] = useState();
   const [expenses, setExpenses] = useState(0);
   const [cashflow, setCashflow] = useState(0);
   const [cashOnCash, setCashOnCash] = useState(0);
+
+
+  const updateValue = (val) => {
+    setIncome(val)
+  }
 
   return (
     <div className="login-back">
@@ -18,9 +23,15 @@ function Form() {
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <NumberInput
                 label='Income'
+                value={income}
+                updateValue={updateValue}
               />
               <NumberInput
                 label='Expenses'
+              />
+
+              <NumberInput
+                label='Total Investment'
               />
             </fieldset>
 

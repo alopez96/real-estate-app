@@ -1,6 +1,6 @@
 
 
-function NumberInput({ label }){
+function NumberInput({ label, value, updateValue }){
 
     return(
         <div className='mv3'>
@@ -10,6 +10,8 @@ function NumberInput({ label }){
                 type="number"
                 name="income"
                 id="income"
+                onChange = {e => updateValue(e.target.value)}
+                value={value}
             />
         </div>
     )
