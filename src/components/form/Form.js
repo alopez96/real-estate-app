@@ -4,14 +4,34 @@ import NumberInput from './NumberInput';
 
 function Form() {
 
-  const [income, setIncome] = useState();
+  const [income, setIncome] = useState(0);
   const [expenses, setExpenses] = useState(0);
-  const [cashflow, setCashflow] = useState(0);
+  const [investments, setInvestments] = useState(0);
   const [cashOnCash, setCashOnCash] = useState(0);
 
 
-  const updateValue = (val) => {
-    setIncome(val)
+  const updateValue = (valName, val) => {
+    console.log('valname', valName)
+    if(valName === 'Income'){
+      setIncome(val)
+    } else if(valName === 'Expenses'){
+      setExpenses(val)
+    } else if(valName === 'Total Investments'){
+      setInvestments(val)
+    }
+  }
+
+  const getCashflow = () => {
+    var totalMonthlyCashflow;
+    totalMonthlyCashflow = income - expenses;
+    return totalMonthlyCashflow;
+  }
+
+  const getCashOnCash = () => {
+    var cashOnCashReturn;
+    var annualCashflow = getCashflow() * 12;
+    var totalInvestment = investments;
+    cashOnCashReturn = (annualCashflow / totalInvestment) * 100;
   }
 
   return (
@@ -28,14 +48,21 @@ function Form() {
               />
               <NumberInput
                 label='Expenses'
+                value={expenses}
+                updateValue={updateValue}
               />
 
               <NumberInput
-                label='Total Investment'
+                label='Total Investments'
+                value={investments}
+                updateValue={updateValue}
               />
             </fieldset>
 
-            <PrimaryBtn />
+            <PrimaryBtn
+              cta='Calculate'
+              action={getCashOnCash}
+            />
           </div>
         </main>
       </article>

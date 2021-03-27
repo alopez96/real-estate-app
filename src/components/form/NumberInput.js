@@ -10,7 +10,7 @@ function NumberInput({ label, value, updateValue }){
                 type="number"
                 name="income"
                 id="income"
-                onChange = {e => updateValue(e.target.value)}
+                onChange = {e => updateValue(label, e.target.value)}
                 value={value}
             />
         </div>
