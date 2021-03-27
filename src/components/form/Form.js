@@ -11,7 +11,6 @@ function Form() {
 
 
   const updateValue = (valName, val) => {
-    console.log('valname', valName)
     if(valName === 'Income'){
       setIncome(val)
     } else if(valName === 'Expenses'){
@@ -33,12 +32,15 @@ function Form() {
     var totalInvestment = investments;
     cashOnCashReturn = (annualCashflow / totalInvestment) * 100;
 
+    console.log('income', income)
+    console.log('expenses', expenses)
+    console.log('investments', investments)
     setCashOnCash(cashOnCashReturn)
   }
 
   return (
     <div className="login-back">
-      <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-100-l shadow-5 bg-near-white center">
+      <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-100-m w-100-l shadow-5 bg-near-white center">
         <main className="pa4 black-80">
           <div className="measure">
 
@@ -66,7 +68,14 @@ function Form() {
               action={getCashOnCash}
             />
 
-            <h2>{cashOnCash}</h2>
+            <div className='flex'>
+              <h4>
+                <span className='gray'>
+                  Cash on Cash Return
+                </span>
+                {' ' + cashOnCash}
+              </h4>
+            </div> 
           </div>
         </main>
       </article>
