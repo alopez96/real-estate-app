@@ -29,3 +29,22 @@
 .shadow{
   box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 20%);
 }
+
+nav{
+  top: 20px;
+  right: 20px;
+  position: fixed;
+}
+
+nav ul li{
+  margin: 10px;
+}
+
+.no-bullets{
+  list-style-type: none;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}

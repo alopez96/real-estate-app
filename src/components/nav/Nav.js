@@ -11,18 +11,22 @@ import {
 //import custom screen
 import Home from '../../pages/Home';
 import CashOnCash from '../../pages/CashOnCash';
+import RentalAnalyzer from '../../pages/RentalAnalyzer';
 
 
 function Main() {
   return (
     <Router>
         <nav>
-          <ul>
+          <ul className='no-bullets row'>
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/cash">Cash</Link>
+            </li>
+            <li>
+              <Link to="/rental">Rental</Link>
             </li>
           </ul>
         </nav>
@@ -34,6 +38,9 @@ function Main() {
         </Route>
         <Route path="/cash">
             <CashOnCash />
+        </Route>
+        <Route path="/rental">
+            <RentalAnalyzer />
         </Route>
     </Switch>
 
