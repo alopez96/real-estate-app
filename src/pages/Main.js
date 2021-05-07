@@ -1,11 +1,12 @@
 import React from 'react';
-import Form from '../components/form/Form';
+
+//import custom screen
+import CashOnCash from './CashOnCash';
 
 function Main() {
   return (
-    <div>
-        <h2>Calculate Cash on Cash</h2>
-        <Form/>
+    <div> 
+        <CashOnCash/>
     </div>
   );
 }
