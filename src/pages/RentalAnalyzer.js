@@ -18,7 +18,7 @@ function RentalAnalyzer(){
     const insurance = 2500;
     const pmi_percent = 1;
 
-    var down_payment = price * down_payment_percent;
+    var down_payment = price * (down_payment_percent/100);
 
     /*
     Calculate the total cash needed to bring to the table for closing deal
@@ -80,10 +80,10 @@ function RentalAnalyzer(){
         var repairs_monthly = (repairs_percent/100)/12;
         var property_mgt_monthly = (property_mgt_percent/100)/12;
 
-        var total_expenses = insurance_monthly + pmi_monthly + taxes_monthly
-            + vacancy_monthly + repairs_monthly
+        var total_expenses = insurance_monthly + pmi_monthly + taxes_monthly + vacancy_monthly + repairs_monthly
             + property_mgt_monthly + total_mortgage;
 
+        console.log('total_expenses', total_expenses)
         return total_expenses;
     }
 
