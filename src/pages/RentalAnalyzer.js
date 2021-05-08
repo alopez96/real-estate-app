@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 //import custom components
 import RentalForm from '../components/forms/RentalForm';
+import PrimaryBtn from '../components/buttons/PrimaryBtn';
 
 
 function RentalAnalyzer(){
 
     const [price, setPrice] = useState(0)
     const [rent, setRent] = useState(0)
+    const [cashflow, setCashflow] = useState(0)
     
     const loan_duration = 30;
     const interest_rate = 3.25;
@@ -99,7 +101,9 @@ function RentalAnalyzer(){
     this will be monthly profit - monthly expenses
     */
     const getCashflow = () => {
-        return getMonthlyProfit() - getMonthlyExpenses;
+        const cash_flow = getMonthlyProfit() - getMonthlyExpenses;
+        setCashflow(cash_flow);
+        return cash_flow;
     }
 
     /*
@@ -127,6 +131,15 @@ function RentalAnalyzer(){
             rent={rent}
             setRent={setRent}
             />
+
+            <PrimaryBtn
+            cta={'Get cash flow'}
+            action={getCashflow}
+            />
+
+            <p>
+                {cashflow}
+            </p>
         </div>
     )
 }
