@@ -121,7 +121,12 @@ function RentalAnalyzer(){
     
     return(
         <div>
-            <RentalForm/>            
+            <RentalForm
+            price={price}
+            setPrice={setPrice}
+            rent={rent}
+            setRent={setRent}
+            />
         </div>
     )
 }
