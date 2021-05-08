@@ -10,9 +10,11 @@ function RentalAnalyzer(){
     const [price, setPrice] = useState(0)
     const [rent, setRent] = useState(0)
     const [cashflow, setCashflow] = useState(0)
+    const [cashoncash, setCashoncash] = useState(0)
+    const [cashNeeded, setCashNeeded] = useState(0)
     
     const loan_duration = 30;
-    const interest_rate = 4;
+    const interest_rate_perecent = 0.04;
     const down_payment_percent = 0.03;
     const tax_percent = 0.0075;
     const insurance = 2500;
@@ -41,6 +43,7 @@ function RentalAnalyzer(){
         */
        var total = down_payment + closing_cost + 15000;
        
+       setCashNeeded(total);
        return total;
     }
 
@@ -61,8 +64,7 @@ function RentalAnalyzer(){
         var principal_amount = price - down_payment;
 
         // define monthly interest rate
-        var yearly_interest = (interest_rate/100)
-        var monthly_interest = yearly_interest / 12;
+        var monthly_interest = interest_rate_perecent / 12;
         
         //define number of months required to pay loan
         var number_of_months = loan_duration * 12;
@@ -88,7 +90,6 @@ function RentalAnalyzer(){
         var other_expenses = (insurance_monthly + pmi_monthly
             + taxes_monthly + vacancy_monthly + repairs_monthly
             + property_mgt_monthly);
-        console.log('other_expenses', other_expenses)
         var total_expenses = total_mortgage + other_expenses;
 
         console.log('total_expenses', total_expenses)
@@ -128,7 +129,15 @@ function RentalAnalyzer(){
 
         var cash_on_cash = (annual_cashflow / down_payment) * 100;
         
+        setCashoncash(cash_on_cash)
         return cash_on_cash;
+    }
+
+
+    const onPressBtn = () => {
+        getCashflow()
+        getCashoncash()
+        getCashNeeded()
     }
     
     return(
@@ -142,12 +151,12 @@ function RentalAnalyzer(){
 
             <PrimaryBtn
             cta={'Get cash flow'}
-            action={getCashflow}
+            action={onPressBtn}
             />
 
-            <p>
-                {cashflow}
-            </p>
+            <p>Cashflow: {cashflow}</p>
+            <p>Cash on cash: {cashoncash}</p>
+            <p>Cash Neeeded: {cashNeeded}</p>
         </div>
     )
 }
