@@ -12,7 +12,7 @@ function RentalAnalyzer(){
     const [cashflow, setCashflow] = useState(0)
     
     const loan_duration = 30;
-    const interest_rate = 3.25;
+    const interest_rate = 4;
     const down_payment_percent = 20;
     const tax_percent = 0.75;
     const insurance = 2500;
@@ -56,17 +56,21 @@ function RentalAnalyzer(){
         var principal_amount = price - down_payment;
 
         // define monthly interest rate
-        var monthly_interest = (interest_rate / 100) / 12;
+        var yearly_interest = (interest_rate/100)
+        var monthly_interest = yearly_interest / 12;
         
         //define number of months required to pay loan
         var number_of_months = loan_duration * 12;
 
-        // define temp variable for redability
-        let top_half = monthly_interest * (1+monthly_interest)^number_of_months;
-        let bottom_half = (1+monthly_interest)^number_of_months - 1;
+        // define temp variable for redability and to ensure PEMDAS math
+        let temp = monthly_interest + 1;
+        temp = temp ^ number_of_months;
+        temp = temp * monthly_interest;
+        let top_half = temp;
+        let bottom_half = ((1+monthly_interest)^number_of_months) - 1;
 
         let total_mortgage = principal_amount * (top_half / bottom_half);
-
+        console.log('total_mortgage', total_mortgage)
         // define other expenses
         var vacancy_percent = 10;
         var repairs_percent = 5;
