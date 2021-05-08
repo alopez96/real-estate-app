@@ -13,12 +13,17 @@ function RentalAnalyzer(){
     
     const loan_duration = 30;
     const interest_rate = 4;
-    const down_payment_percent = 20;
-    const tax_percent = 0.75;
+    const down_payment_percent = 0.03;
+    const tax_percent = 0.0075;
     const insurance = 2500;
-    const pmi_percent = 1;
+    const pmi_percent = 0.01;
 
-    var down_payment = price * (down_payment_percent/100);
+    // define other expenses
+    const vacancy_percent = 0.10;
+    const repairs_percent = 0.10;
+    const property_mgt_percent = 0.10;
+
+    var down_payment = price * down_payment_percent;
 
     /*
     Calculate the total cash needed to bring to the table for closing deal
@@ -27,7 +32,7 @@ function RentalAnalyzer(){
     const getCashNeeded = () => {
 
         // closing cost is usally 2-5 percent of the total loan amount
-        var closing_cost = (price - down_payment_percent) * 0.05;
+        var closing_cost = (price - down_payment) * 0.05;
 
         /*
         assume anticipated repairs is 5k
@@ -71,21 +76,20 @@ function RentalAnalyzer(){
 
         let total_mortgage = principal_amount * (top_half / bottom_half);
         console.log('total_mortgage', total_mortgage)
-        // define other expenses
-        var vacancy_percent = 10;
-        var repairs_percent = 5;
-        var property_mgt_percent = 10;
 
         // define monthly expenses
         var insurance_monthly = insurance/12;
         var pmi_monthly = (pmi_percent * price)/12;
-        var taxes_monthly = tax_percent * price;
+        var taxes_monthly = (tax_percent * price)/12;
         var vacancy_monthly = vacancy_percent/12;
-        var repairs_monthly = (repairs_percent/100)/12;
-        var property_mgt_monthly = (property_mgt_percent/100)/12;
+        var repairs_monthly = repairs_percent/12;
+        var property_mgt_monthly = property_mgt_percent/12;
 
-        var total_expenses = insurance_monthly + pmi_monthly + taxes_monthly + vacancy_monthly + repairs_monthly
-            + property_mgt_monthly + total_mortgage;
+        var other_expenses = (insurance_monthly + pmi_monthly
+            + taxes_monthly + vacancy_monthly + repairs_monthly
+            + property_mgt_monthly);
+        console.log('other_expenses', other_expenses)
+        var total_expenses = total_mortgage + other_expenses;
 
         console.log('total_expenses', total_expenses)
         return total_expenses;
