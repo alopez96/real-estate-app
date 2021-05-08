@@ -101,7 +101,7 @@ function RentalAnalyzer(){
     this will be monthly profit - monthly expenses
     */
     const getCashflow = () => {
-        const cash_flow = getMonthlyProfit() - getMonthlyExpenses;
+        const cash_flow = getMonthlyProfit() - getMonthlyExpenses();
         setCashflow(cash_flow);
         return cash_flow;
     }
